@@ -1,0 +1,1 @@
+An AI-powered career assistant that analyzes resumes against job descriptions, identifies skill gaps, and generates custom learning roadmaps using the Gemini 2.5 Flash API. Built with Python, Flask, and a modern Glassmorphism UI.
