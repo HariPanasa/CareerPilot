@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerPilot AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-bolt"></i> CareerPilot
+            </div>
+            
+            <div class="upload-section" id="upload-section">
+                
+                <div class="jd-section">
+                    <label for="job-description">Target Job Description <span class="optional">(Optional)</span></label>
+                    <textarea id="job-description" placeholder="Paste job description here to get a matching score & tailored improvements..."></textarea>
+                </div>
+
+                <div class="drop-zone" id="drop-zone">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <p>Upload Resume PDF</p>
+                    <button class="btn-browse" id="btn-browse">Browse</button>
+                    <input type="file" id="file-input" accept=".pdf" hidden>
+                </div>
+
+                <div class="upload-status" id="upload-status" hidden>
+                    <div class="spinner"></div>
+                    <span id="upload-text">Analyzing with AI...</span>
+                </div>
+            </div>
+
+            <div class="analysis-summary" id="analysis-summary" hidden>
+                <h3>Match Score</h3>
+                <div class="score-circle">
+                    <svg viewBox="0 0 36 36" class="circular-chart">
+                        <path class="circle-bg"
+                          d="M18 2.0845
+                            a 15.9155 15.9155 0 0 1 0 31.831
+                            a 15.9155 15.9155 0 0 1 0 -31.831"
+                        />
+                        <path class="circle" id="score-circle-path"
+                          stroke-dasharray="0, 100"
+                          d="M18 2.0845
+                            a 15.9155 15.9155 0 0 1 0 31.831
+                            a 15.9155 15.9155 0 0 1 0 -31.831"
+                        />
+                    </svg>
+                    <div class="percentage" id="ats-score-value">0%</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-area">
+            <header class="chat-header">
+                <h2>AI Copilot</h2>
+                <div class="model-badge">Gemini 2.5 Flash</div>
+            </header>
+
+            <div class="chat-messages" id="chat-messages">
+                <div class="message bot-message">
+                    <div class="message-content markdown-body">
+                        <h3>Welcome to CareerPilot!</h3>
+                        <p>I can help you match your resume to a job description, identify missing skills, and generate custom projects to build your portfolio.</p>
+                        <p><strong>To get started:</strong></p>
+                        <ol>
+                            <li>Paste a Job Description in the sidebar (optional but recommended).</li>
+                            <li>Upload your Resume PDF.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-input-container">
+                <div class="input-wrapper" id="input-wrapper">
+                    <textarea id="chat-input" placeholder="Message CareerPilot..." disabled rows="1"></textarea>
+                    <button id="btn-send" disabled>
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </button>
+                </div>
+                <div class="disclaimer">CareerPilot can make mistakes. Verify important information.</div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
